@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import Login from './login';
-import { clickSowModal } from '../actions/Actions'
+import { clickSowModal, closeModal } from '../actions/Actions'
 import FirstPage from './firstPage';
 
 class Main extends Component {
@@ -28,11 +28,11 @@ class Main extends Component {
             <Login
                     showModal={this.props.showModal}
                     isLogin={this.props.isLogin}
+                    closeModal={this.props.closeModal}
+                    handleLogin={this.props.handleLogin}
                 />
             </div>
-
         )
-
     }
 }
 
@@ -43,13 +43,14 @@ const mapStateToProps = store => {
     return {
         user: store.user,
         company: store.company,
-        showModal: false,
-        isLogin: false
+        showModal: store.showModal,
+        isLogin: store.isLogin
     }
 }
 
 const mapDispatchToProps = dispatch => ({
     clickSowModal: () => dispatch(clickSowModal()),
+    closeModal: () => dispatch(closeModal())
 })
 
 

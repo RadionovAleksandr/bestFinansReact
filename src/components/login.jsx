@@ -3,18 +3,25 @@ import React, { Component } from 'react';
 
 class login extends Component {
 
+    handleLogin = (event) => {
+        event.preventDefault()
+    }
+
     render() {
         console.log('render login')
         console.log(this.state)
         console.log(this.props)
-        const showModal = this.props;
-        const isLogin = this.props;
+        const { showModal, isLogin, closeModal, handleLogin } = this.props;
 
-        if (!showModal) {
-            if (isLogin) {
+
+        console.log(showModal)
+        if (showModal === true) {
+            console.log('showModal')
+            if (isLogin === false) {
+                console.log('isLoginFalse')
                 return <div className="modal-window">
                     <h2 className="modal-winow__title">Напишите нам</h2>
-                    <button className="modal-window__close-btn"></button>
+                    <button className="modal-window__close-btn" onClick={closeModal}></button>
                     <form className="modal-window__login-form">
                         <fieldset className="modal-window__user-name">
                             <legend><label className="" htmlFor="user-login"><b>Ваше имя:</b></label></legend>
@@ -28,11 +35,12 @@ class login extends Component {
                             <legend><label htmlFor="textarea"><b>Текст письма:</b></label></legend>
                             <textarea className="text-letter" name="textarea" id="textarea" cols="30" rows="10" placeholder="В свободной форме"></textarea>
                         </fieldset>
-                        <button className="modal-window__btn button" onClick={this.props.handleLogin}>Отправить</button>
+                        <button className="modal-window__btn button" onClick={handleLogin}>Отправить</button>
                     </form>
                 </div>
 
             } else {
+                console.log('isLoginTrue')
                 return <h1>Скидка 5%</h1>
             }
 

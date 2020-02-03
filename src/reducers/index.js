@@ -1,7 +1,7 @@
 export const initialState = {
     user: {
         password: 'root',
-        login: 'root',
+        login: 'radionov.an1993@gmail.com',
     },
 
     company: {
@@ -19,8 +19,14 @@ export const initialState = {
 export function rootReducer(state = initialState, action) {
     switch (action.type) {
         case 'clickSowModal':
-
             return {...state, showModal: action.payload }
+        case 'closeModal':
+            return {...state, showModal: action.payload }
+        case 'LOGIN_REQUEST':
+            if (state.isLogin) {
+                return {...state, isLogin: true }
+            }
+
         default:
             return state
     }
